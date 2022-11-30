@@ -1,22 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, FlatList, TouchableOpacity } from 'react-native';
-
-import { pegarRepositoriosDoUsuario } from '../../servicos/Requisicoes/repositorios';
-
 import estilos from './estilos';
+import { pegarRepositoriosDoUsuario } from '../../servicos/Requisicoes/repositorios';
+import { useIsFocused } from '@react-navigation/native';
 
 export default function Repositorios({ route, navigation }) {
     const [repo, setRepo] = useState([]);
 
+    const estaNaTela = useIsFocused()
+
     useEffect(() => {
 
         async function response(){
-            const resultado = await pegarRepositoriosDoUsuario(route.params.id);
-
+            const resultado = await pegarRepositoriosDoUsuario(route.params.login);
+        
             setRepo(resultado)
         }
         response();
-    }, [])
+
+    }, [estaNaTela])
+
+    
 
 
 
@@ -25,7 +29,7 @@ export default function Repositorios({ route, navigation }) {
             <Text style={estilos.repositoriosTexto}>{repo.length} repositórios criados</Text>
             <TouchableOpacity
                 style={estilos.botao}
-                onPress={() => navigation.navigate('CriarRepositorio')}
+                onPress={() => navigation.navigate('CriarRepositorio', {id: route.params.id})}
             >
                 <Text style={estilos.textoBotao}>Adicionar novo repositório</Text>
             </TouchableOpacity>
