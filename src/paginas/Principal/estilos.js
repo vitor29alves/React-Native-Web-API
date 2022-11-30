@@ -62,6 +62,14 @@ const estilos = StyleSheet.create({
         color: '#717E84',
         marginTop: 5,
     },
+    cardBio:{
+        width: "80%",
+    },
+    textoBio:{
+        fontSize: 12,
+        color: '#717E84',
+        marginTop: 5,
+    },
     seguidoresArea: {
         width: '100%',
         alignItems: 'center',

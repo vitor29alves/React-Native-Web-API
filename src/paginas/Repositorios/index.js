@@ -13,15 +13,13 @@ export default function Repositorios({ route, navigation }) {
 
         async function response(){
             const resultado = await pegarRepositoriosDoUsuario(route.params.login);
-        
+            
             setRepo(resultado)
+            console.log(resultado)
         }
         response();
 
     }, [estaNaTela])
-
-    
-
 
 
     return (

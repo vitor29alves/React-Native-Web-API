@@ -26,27 +26,36 @@ export default function Principal({ navigation }) {
         <ScrollView>
             <View style={estilos.container}>
 
-                { usuario?.login &&
+                {usuario?.login &&
                     <>
                         <View style={estilos.fundo} />
                         <View style={estilos.imagemArea}>
                             <Image source={{ uri: usuario.avatar_url }} style={estilos.imagem} />
                         </View>
                         <Text style={estilos.textoNome}> {usuario.name} </Text>
+                        <View style={estilos.cardBio} >
+                            <Text style={estilos.textoBio}> {usuario.bio} </Text>
+                        </View>
+
                         <Text style={estilos.textoEmail}> {usuario.email} </Text>
+
+
                         <View style={estilos.seguidoresArea}>
+
                             <View style={estilos.seguidores}>
                                 <Text style={estilos.seguidoresNumero}>{usuario.followers}</Text>
                                 <Text style={estilos.seguidoresTexto}>Seguidores</Text>
                             </View>
+
                             <View style={estilos.seguidores}>
                                 <Text style={estilos.seguidoresNumero}> {usuario.following}</Text>
                                 <Text style={estilos.seguidoresTexto}>Seguindo</Text>
                             </View>
+
                         </View>
-                        <TouchableOpacity onPress={() => navigation.navigate('Repositorios', {id: usuario.id})}>
+                        <TouchableOpacity onPress={() => navigation.navigate('Repositorios', { login: usuario.login })}>
                             <Text style={estilos.repositorios}>
-                                Ver os repositórios
+                                Ver os repositórios ({usuario.public_repos})
                             </Text>
                         </TouchableOpacity>
                     </>
